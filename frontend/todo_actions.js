@@ -6,20 +6,7 @@ export const RECEIVE_TODO = 'RECEIVE_TODO';
 //   type: ADD_ITEM,
 //   item
 // });
-const data = {
-  1: {
-    id: 1,
-    title: 'wash car',
-    body: 'with soap',
-    done: false
-  },
-  2: {
-    id: 2,
-    title: 'wash dog',
-    body: 'with shampoo',
-    done: true
-  },
-};
+
 
 export const receiveTodos = (todos) => ({
   type: RECEIVE_TODOS,

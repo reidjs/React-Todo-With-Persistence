@@ -1,20 +1,40 @@
 import { RECEIVE_TODO, RECEIVE_TODOS } from '../todo_actions';
-const _defaultState = {};
+import merge from 'lodash/merge';
+const _defaultState = {
+  1: {
+    id: 1,
+    title: 'wash car',
+    body: 'with soap',
+    done: false
+  },
+  2: {
+    id: 2,
+    title: 'wash dog',
+    body: 'with shampoo',
+    done: true
+  }
+};
 
 const todosReducer = (oldState = _defaultState, action) => {
   Object.freeze(oldState);
   switch(action.type){
-    // case RECEIVE_TODO:
-    //   return {
-    // //     todo: [...oldState, action.item]
-    //   };
-    //   case RECEIVE_TODOS:
-    //   return {
-    //     // item: [...oldState.items, action.item]
-    //   };
+    case RECEIVE_TODOS:
+      let nextState = {};
+      action.todos.forEach(function(el){
+        nextState[el.id] = el;
+      });
+      return nextState;
+    case RECEIVE_TODO:
+      //deep dup the oldState
+      let newState = merge({},oldState);
+      const newTodo = action.todo;
+      newState[newTodo.id] = newTodo;
+      return newState;
     default:
       return oldState;
   }
 };
+
+
 
 export default todosReducer;
