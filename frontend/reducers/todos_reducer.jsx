@@ -19,6 +19,8 @@ const todosReducer = (oldState = _defaultState, action) => {
   Object.freeze(oldState);
   switch(action.type){
     case RECEIVE_TODOS:
+      //use selector to receive array and output object of objects
+      //transforms state 
       let nextState = {};
       action.todos.forEach(function(el){
         nextState[el.id] = el;

@@ -21180,6 +21180,10 @@ var _store = __webpack_require__(75);
 
 var _store2 = _interopRequireDefault(_store);
 
+var _app = __webpack_require__(172);
+
+var _app2 = _interopRequireDefault(_app);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Root = function Root() {
@@ -21189,7 +21193,12 @@ var Root = function Root() {
 		_react2.default.createElement(
 			'div',
 			null,
-			' hi'
+			_react2.default.createElement(_app2.default, null),
+			_react2.default.createElement(
+				'h1',
+				null,
+				' hello!'
+			)
 		)
 	);
 };
@@ -21239,6 +21248,8 @@ var todosReducer = function todosReducer() {
   Object.freeze(oldState);
   switch (action.type) {
     case _todo_actions.RECEIVE_TODOS:
+      //use selector to receive array and output object of objects
+      //transforms state 
       var nextState = {};
       action.todos.forEach(function (el) {
         nextState[el.id] = el;
@@ -21270,12 +21281,6 @@ Object.defineProperty(exports, "__esModule", {
 // export const ADD_ITEM = "ADD_ITEM";
 var RECEIVE_TODOS = exports.RECEIVE_TODOS = 'RECEIVE_TODOS';
 var RECEIVE_TODO = exports.RECEIVE_TODO = 'RECEIVE_TODO';
-
-// export const addItem = (item) => ({
-//   type: ADD_ITEM,
-//   item
-// });
-
 
 var receiveTodos = exports.receiveTodos = function receiveTodos(todos) {
   return {
@@ -24295,6 +24300,36 @@ function isIterateeCall(value, index, object) {
 
 module.exports = isIterateeCall;
 
+
+/***/ }),
+/* 172 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var App = function App() {
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      'h1',
+      null,
+      'App file'
+    )
+  );
+};
+exports.default = App;
 
 /***/ })
 /******/ ]);

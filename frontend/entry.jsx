@@ -4,7 +4,6 @@ import Root from './root';
 import store from './store/store';
 import todosReducer from './reducers/todos_reducer';
 
-
 window.store = store; //remove later
 window.todosReducer = todosReducer;
 document.addEventListener("DOMContentLoaded", () => {
