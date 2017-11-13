@@ -21,10 +21,12 @@ const data = {
   },
 };
 
-export const receiveTodos = () => ({
-  type: RECEIVE_TODOS
+export const receiveTodos = (todos) => ({
+  type: RECEIVE_TODOS,
+  todos
 });
 
 export const receiveTodo = (todo) => ({
-  type: RECEIVE_TODO
+  type: RECEIVE_TODO,
+  todo
 });

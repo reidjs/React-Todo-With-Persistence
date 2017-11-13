@@ -1897,7 +1897,13 @@ var _root = __webpack_require__(70);
 
 var _root2 = _interopRequireDefault(_root);
 
+var _store = __webpack_require__(75);
+
+var _store2 = _interopRequireDefault(_store);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+window.store = _store2.default;
 
 document.addEventListener("DOMContentLoaded", function () {
 	_reactDom2.default.render(_react2.default.createElement(_root2.default, null), document.getElementById('root'));
@@ -21145,29 +21151,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 }
 
 /***/ }),
-/* 69 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _redux = __webpack_require__(49);
-
-var _todos_reducer = __webpack_require__(73);
-
-var _todos_reducer2 = _interopRequireDefault(_todos_reducer);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var store = (0, _redux.createStore)(_todos_reducer2.default);
-window.store = store;
-exports.default = store;
-
-/***/ }),
+/* 69 */,
 /* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21188,7 +21172,7 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRedux = __webpack_require__(39);
 
-var _store = __webpack_require__(69);
+var _store = __webpack_require__(75);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -21231,14 +21215,14 @@ var todosReducer = function todosReducer() {
 
   Object.freeze(oldState);
   switch (action.type) {
-    case _todo_actions.RECEIVE_TODO:
-      return {
-        //     todo: [...oldState, action.item]
-      };
-    case _todo_actions.RECEIVE_TODOS:
-      return {
-        // item: [...oldState.items, action.item]
-      };
+    // case RECEIVE_TODO:
+    //   return {
+    // //     todo: [...oldState, action.item]
+    //   };
+    //   case RECEIVE_TODOS:
+    //   return {
+    //     // item: [...oldState.items, action.item]
+    //   };
     default:
       return oldState;
   }
@@ -21279,17 +21263,68 @@ var data = {
   }
 };
 
-var receiveTodos = exports.receiveTodos = function receiveTodos() {
+var receiveTodos = exports.receiveTodos = function receiveTodos(todos) {
   return {
-    type: RECEIVE_TODOS
+    type: RECEIVE_TODOS,
+    todos: todos
   };
 };
 
 var receiveTodo = exports.receiveTodo = function receiveTodo(todo) {
   return {
-    type: RECEIVE_TODO
+    type: RECEIVE_TODO,
+    todo: todo
   };
 };
+
+/***/ }),
+/* 75 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = __webpack_require__(49);
+
+var _root_reducer = __webpack_require__(76);
+
+var _root_reducer2 = _interopRequireDefault(_root_reducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// import todosReducer from '../reducers/todos_reducer';
+
+
+var configureStore = (0, _redux.createStore)(_root_reducer2.default);
+
+exports.default = configureStore;
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _redux = __webpack_require__(49);
+
+var _todos_reducer = __webpack_require__(73);
+
+var _todos_reducer2 = _interopRequireDefault(_todos_reducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = (0, _redux.combineReducers)({
+  todo: _todos_reducer2.default
+});
 
 /***/ })
 /******/ ]);
