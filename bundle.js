@@ -24273,12 +24273,17 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _todo_list_container = __webpack_require__(175);
+
+var _todo_list_container2 = _interopRequireDefault(_todo_list_container);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
   return _react2.default.createElement(
     'div',
     null,
+    _react2.default.createElement('todoListContainer', null),
     _react2.default.createElement(
       'h1',
       null,
@@ -24364,6 +24369,80 @@ var getAllTodos = exports.getAllTodos = function getAllTodos(state) {
 // export const getAllTodos = ({ todos }) => (
 // 	Object.keys(todos).map(id => todos[id])
 // );
+
+/***/ }),
+/* 175 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = __webpack_require__(39);
+
+var _todo_actions = __webpack_require__(74);
+
+var _todo_list = __webpack_require__(176);
+
+var _todo_list2 = _interopRequireDefault(_todo_list);
+
+var _selectors = __webpack_require__(174);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//grabbing state from store passing them as props so that component can use them
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    todos: (0, _selectors.getAllTodos)(state)
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    receiveTodos: function receiveTodos(todos) {
+      return dispatch((0, _todo_actions.receiveTodos)(todos));
+    },
+    receiveTodo: function receiveTodo(todo) {
+      return dispatch((0, _todo_actions.receiveTodo)(todo));
+    }
+  };
+};
+
+//allows presentational component todoList to have access
+//to the props and actions
+var todoListContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_todo_list2.default);
+
+exports.default = todoListContainer;
+
+/***/ }),
+/* 176 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var todoList = function todoList() {
+  return _react2.default.createElement(
+    'h3',
+    null,
+    'Todo list goes hereasegh'
+  );
+};
+
+exports.default = todoList;
 
 /***/ })
 /******/ ]);
