@@ -1893,7 +1893,7 @@ var _reactDom = __webpack_require__(30);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _root = __webpack_require__(70);
+var _root = __webpack_require__(173);
 
 var _root2 = _interopRequireDefault(_root);
 
@@ -1905,12 +1905,15 @@ var _todos_reducer = __webpack_require__(73);
 
 var _todos_reducer2 = _interopRequireDefault(_todos_reducer);
 
+var _selectors = __webpack_require__(174);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.store = _store2.default; //remove later
+window.getAllTodos = _selectors.getAllTodos;
 window.todosReducer = _todos_reducer2.default;
 document.addEventListener("DOMContentLoaded", function () {
-	_reactDom2.default.render(_react2.default.createElement(_root2.default, null), document.getElementById('root'));
+	_reactDom2.default.render(_react2.default.createElement(_root2.default, { store: _store2.default }), document.getElementById('root'));
 });
 
 /***/ }),
@@ -21156,56 +21159,7 @@ function verifySubselectors(mapStateToProps, mapDispatchToProps, mergeProps, dis
 
 /***/ }),
 /* 69 */,
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-
-var _react = __webpack_require__(2);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(30);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _reactRedux = __webpack_require__(39);
-
-var _store = __webpack_require__(75);
-
-var _store2 = _interopRequireDefault(_store);
-
-var _app = __webpack_require__(172);
-
-var _app2 = _interopRequireDefault(_app);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Root = function Root() {
-	return _react2.default.createElement(
-		_reactRedux.Provider,
-		{ store: _store2.default },
-		_react2.default.createElement(
-			'div',
-			null,
-			_react2.default.createElement(_app2.default, null),
-			_react2.default.createElement(
-				'h1',
-				null,
-				' hello!'
-			)
-		)
-	);
-};
-
-exports.default = Root;
-
-/***/ }),
+/* 70 */,
 /* 71 */,
 /* 72 */,
 /* 73 */
@@ -21341,8 +21295,11 @@ var _todos_reducer2 = _interopRequireDefault(_todos_reducer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import usersReducer from
+//slices of state
+//keys: names of slice of state
 exports.default = (0, _redux.combineReducers)({
-  todo: _todos_reducer2.default
+  todos: _todos_reducer2.default
 });
 
 /***/ }),
@@ -24330,6 +24287,83 @@ var App = function App() {
   );
 };
 exports.default = App;
+
+/***/ }),
+/* 173 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(30);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _reactRedux = __webpack_require__(39);
+
+var _app = __webpack_require__(172);
+
+var _app2 = _interopRequireDefault(_app);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Root = function Root(_ref) {
+	var store = _ref.store;
+	return _react2.default.createElement(
+		_reactRedux.Provider,
+		{ store: store },
+		_react2.default.createElement(
+			'div',
+			null,
+			_react2.default.createElement(_app2.default, null),
+			_react2.default.createElement(
+				'h1',
+				null,
+				' hello!'
+			)
+		)
+	);
+};
+
+exports.default = Root;
+
+/***/ }),
+/* 174 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+// let result = [];
+// todos.forEach(function(el) {
+//   result.push(todos[el]);
+// });
+// return result;
+//grabs and formats the data (slice of state)
+//does not modify anything, just grabs and returns in specific way
+//useful for iterating through your objects
+var getAllTodos = exports.getAllTodos = function getAllTodos(state) {
+  var todos = Object.keys(state.todos);
+  return todos.map(function (id) {
+    return state.todos[id];
+  });
+};
+
+//identical approach:
+// export const getAllTodos = ({ todos }) => (
+// 	Object.keys(todos).map(id => todos[id])
+// );
 
 /***/ })
 /******/ ]);

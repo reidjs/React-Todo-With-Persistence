@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from './store/store';
-import App from './components/app';
+import App from '../components/app';
 
-const Root = () => (
+const Root = ( {store} ) => (
 	<Provider store={store}>
 		<div>
 			<App />
