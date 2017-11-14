@@ -20,7 +20,7 @@ const todosReducer = (oldState = _defaultState, action) => {
   switch(action.type){
     case RECEIVE_TODOS:
       //use selector to receive array and output object of objects
-      //transforms state 
+      //transforms state
       let nextState = {};
       action.todos.forEach(function(el){
         nextState[el.id] = el;
@@ -28,6 +28,7 @@ const todosReducer = (oldState = _defaultState, action) => {
       return nextState;
     case RECEIVE_TODO:
       //deep dup the oldState
+      console.log('Receive Todo action');
       let newState = merge({},oldState);
       const newTodo = action.todo;
       newState[newTodo.id] = newTodo;

@@ -21203,7 +21203,7 @@ var todosReducer = function todosReducer() {
   switch (action.type) {
     case _todo_actions.RECEIVE_TODOS:
       //use selector to receive array and output object of objects
-      //transforms state 
+      //transforms state
       var nextState = {};
       action.todos.forEach(function (el) {
         nextState[el.id] = el;
@@ -21211,6 +21211,7 @@ var todosReducer = function todosReducer() {
       return nextState;
     case _todo_actions.RECEIVE_TODO:
       //deep dup the oldState
+      console.log('Receive Todo action');
       var newState = (0, _merge2.default)({}, oldState);
       var newTodo = action.todo;
       newState[newTodo.id] = newTodo;
@@ -24436,8 +24437,13 @@ var _todo_list_item = __webpack_require__(177);
 
 var _todo_list_item2 = _interopRequireDefault(_todo_list_item);
 
+var _todo_form = __webpack_require__(178);
+
+var _todo_form2 = _interopRequireDefault(_todo_form);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// <button onClick={receiveTodo}>Add todo</button>
 var TodoList = function TodoList(_ref) {
   var todos = _ref.todos,
       receiveTodos = _ref.receiveTodos,
@@ -24446,17 +24452,16 @@ var TodoList = function TodoList(_ref) {
     'div',
     null,
     _react2.default.createElement(
-      'button',
-      { onClick: receiveTodo },
-      'Add todo'
-    ),
-    _react2.default.createElement(
       'ul',
       null,
       todos.map(function (todo, idx) {
-        return _react2.default.createElement(_todo_list_item2.default, { todo: todo, key: idx });
+        return (
+          //passing in todo,key, and idx as props
+          _react2.default.createElement(_todo_list_item2.default, { todo: todo, key: idx, idx: idx })
+        );
       })
-    )
+    ),
+    _react2.default.createElement(_todo_form2.default, { onSubmit: receiveTodo })
   );
 };
 
@@ -24490,6 +24495,82 @@ var TodoListItem = function TodoListItem(_ref) {
 };
 
 exports.default = TodoListItem;
+
+/***/ }),
+/* 178 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TodoForm = function (_React$Component) {
+  _inherits(TodoForm, _React$Component);
+
+  function TodoForm(props) {
+    _classCallCheck(this, TodoForm);
+
+    var _this = _possibleConstructorReturn(this, (TodoForm.__proto__ || Object.getPrototypeOf(TodoForm)).call(this, props));
+
+    _this.submitForm = _this.props.onSubmit;
+    return _this;
+  }
+
+  _createClass(TodoForm, [{
+    key: "handleClick",
+    value: function handleClick(event) {
+      console.log(event);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+          "label",
+          null,
+          "Title",
+          _react2.default.createElement("input", { type: "text" })
+        ),
+        _react2.default.createElement(
+          "label",
+          null,
+          "Body",
+          _react2.default.createElement("input", { type: "text" })
+        ),
+        _react2.default.createElement(
+          "button",
+          { onClick: this.submitForm },
+          "Add Todo!"
+        )
+      );
+    }
+  }]);
+
+  return TodoForm;
+}(_react2.default.Component);
+// <input type="submit" value="submit" />
+
+
+exports.default = TodoForm;
 
 /***/ })
 /******/ ]);
