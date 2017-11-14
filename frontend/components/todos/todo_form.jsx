@@ -3,27 +3,54 @@ import React from 'react';
 class TodoForm extends React.Component {
   constructor(props) {
     super(props);
-    this.submitForm = this.props.onSubmit;
+
+    this.state = { todo: {title: ""} };
+    this.updateTodo = this.updateTodo.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.state.todo =
   }
 
-  handleClick(event) {
-    console.log(event);
+  updateTodo(e) {
+    // const todo = {title: e.target.value};
+    // console.log(todo);
+    console.log(e.target.value);
+    const todo = { todo: {title: e.target.value }};
+    this.setState(todo);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log('this state todo:', this.state.todo);
+
+    this.props.receiveTodo(this.state.todo);
+    // this.setState({ todo: "" });
   }
 
   render() {
     return (
       <div>
-        <label>Title
-          <input type="text"/>
-        </label>
-        <label>Body
-          <input type="text"/>
-        </label>
-        <button onClick={this.submitForm}>Add Todo!</button>
+        <form>
+          <label>Title
+            <input
+              className="form-title"
+              type="text"
+              onChange={this.updateTodo}
+              value={this.state.todo.title}
+            />
+          </label>
+          <button onClick={this.handleSubmit}>Add Todo!</button>
+        </form>
       </div>
     );
   }
 }
+// <label>Body
+//   <input
+//     className="form-body"
+//     type="text"
+//     onChange={this.updateTodo}
+//     />
+// </label>
 // <input type="submit" value="submit" />
 
 

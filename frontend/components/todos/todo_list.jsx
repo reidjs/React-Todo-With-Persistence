@@ -13,7 +13,7 @@ const TodoList = ( {todos, receiveTodos, receiveTodo} ) => (
           ))
         }
       </ul>
-      <TodoForm onSubmit={receiveTodo}/>
+      <TodoForm receiveTodo={receiveTodo}/>
   </div>
 
 );
