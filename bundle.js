@@ -24529,7 +24529,7 @@ var TodoForm = function (_React$Component) {
 
     var _this = _possibleConstructorReturn(this, (TodoForm.__proto__ || Object.getPrototypeOf(TodoForm)).call(this, props));
 
-    _this.state = { todo: { title: "" } };
+    _this.state = { todo: { title: "", body: "" } };
     _this.updateTodo = _this.updateTodo.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     // this.state.todo =
@@ -24537,16 +24537,16 @@ var TodoForm = function (_React$Component) {
   }
 
   _createClass(TodoForm, [{
-    key: 'updateTodo',
+    key: "updateTodo",
     value: function updateTodo(e) {
       // const todo = {title: e.target.value};
       // console.log(todo);
       console.log(e.target.value);
-      var todo = { todo: { title: e.target.value } };
-      this.setState(todo);
+      var todo = { title: e.target.value };
+      this.setState({ todo: todo });
     }
   }, {
-    key: 'handleSubmit',
+    key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
       console.log('this state todo:', this.state.todo);
@@ -24555,29 +24555,28 @@ var TodoForm = function (_React$Component) {
       // this.setState({ todo: "" });
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       return _react2.default.createElement(
-        'div',
+        "div",
         null,
         _react2.default.createElement(
-          'form',
+          "form",
           null,
           _react2.default.createElement(
-            'label',
+            "label",
             null,
-            'Title',
-            _react2.default.createElement('input', {
-              className: 'form-title',
-              type: 'text',
-              onChange: this.updateTodo,
-              value: this.state.todo.title
+            "Title",
+            _react2.default.createElement("input", {
+              className: "form-title",
+              type: "text",
+              onChange: this.updateTodo
             })
           ),
           _react2.default.createElement(
-            'button',
+            "button",
             { onClick: this.handleSubmit },
-            'Add Todo!'
+            "Add Todo!"
           )
         )
       );
@@ -24586,6 +24585,7 @@ var TodoForm = function (_React$Component) {
 
   return TodoForm;
 }(_react2.default.Component);
+// value={this.state.todo.title}
 // <label>Body
 //   <input
 //     className="form-body"

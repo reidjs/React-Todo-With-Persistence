@@ -4,7 +4,7 @@ class TodoForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { todo: {title: ""} };
+    this.state = { todo: {title: "",body:""} };
     this.updateTodo = this.updateTodo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     // this.state.todo =
@@ -14,8 +14,8 @@ class TodoForm extends React.Component {
     // const todo = {title: e.target.value};
     // console.log(todo);
     console.log(e.target.value);
-    const todo = { todo: {title: e.target.value }};
-    this.setState(todo);
+    const todo =  {title: e.target.value };
+    this.setState({todo});
   }
 
   handleSubmit(e) {
@@ -35,7 +35,6 @@ class TodoForm extends React.Component {
               className="form-title"
               type="text"
               onChange={this.updateTodo}
-              value={this.state.todo.title}
             />
           </label>
           <button onClick={this.handleSubmit}>Add Todo!</button>
@@ -44,6 +43,7 @@ class TodoForm extends React.Component {
     );
   }
 }
+// value={this.state.todo.title}
 // <label>Body
 //   <input
 //     className="form-body"
