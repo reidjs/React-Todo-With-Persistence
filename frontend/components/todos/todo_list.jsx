@@ -1,7 +1,18 @@
 import React from 'react';
+import TodoListItem from './todo_list_item';
 
-const todoList = () => (
-  <h3 >Todo list goes hereasegh</h3>
+const TodoList = ( {todos, receiveTodos, receiveTodo} ) => (
+  <div>
+    <button onClick={receiveTodo}>Add todo</button>
+      <ul>
+        {
+          todos.map((todo, idx) => (
+            <TodoListItem todo={todo} key={idx} />
+          ))
+        }
+      </ul>
+  </div>
+
 );
 
-export default todoList;
+export default TodoList;
