@@ -19,3 +19,26 @@ const TodoList = ( {todos, receiveTodos, receiveTodo} ) => (
 );
 
 export default TodoList;
+
+//equivalent to:
+// class TodoList extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     console.log(props);
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <ul>
+//           {
+//             this.props.todos.map((todo, idx) => (
+//               //passing in todo,key, and idx as props
+//               <TodoListItem todo={todo} key={idx} idx={idx} />
+//             ))
+//           }
+//         </ul>
+//         <TodoForm receiveTodo={this.props.receiveTodo}/>
+//     </div>
+//   );
+//   }
+// }

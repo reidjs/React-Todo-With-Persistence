@@ -1,10 +1,11 @@
 import React from 'react';
+import uniqueId from './utils';
 
 class TodoForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { todo: {title: "",body:""} };
+    this.state = { todo: {id: 1, title: "", body:""} };
     this.updateTodo = this.updateTodo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     // this.state.todo =
@@ -14,7 +15,7 @@ class TodoForm extends React.Component {
     // const todo = {title: e.target.value};
     // console.log(todo);
     console.log(e.target.value);
-    const todo =  {title: e.target.value };
+    const todo =  {id: uniqueId(), title: e.target.value };
     this.setState({todo});
   }
 
