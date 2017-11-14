@@ -2959,8 +2959,13 @@ var _todos_reducer2 = _interopRequireDefault(_todos_reducer);
 
 var _selectors = __webpack_require__(45);
 
+var _todo_form = __webpack_require__(105);
+
+var _todo_form2 = _interopRequireDefault(_todo_form);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+window.formState = _todo_form2.default;
 window.store = _store2.default; //remove later
 window.getAllTodos = _selectors.getAllTodos;
 window.todosReducer = _todos_reducer2.default;
@@ -22344,9 +22349,10 @@ var TodoForm = function (_React$Component) {
   function TodoForm(props) {
     _classCallCheck(this, TodoForm);
 
+    // this.state = { todo: {} };
     var _this = _possibleConstructorReturn(this, (TodoForm.__proto__ || Object.getPrototypeOf(TodoForm)).call(this, props));
 
-    _this.state = { todo: { id: 1, title: "", body: "" } };
+    _this.state = { todo: { id: "", title: "", body: "" } };
     _this.updateTodo = _this.updateTodo.bind(_this);
     _this.handleSubmit = _this.handleSubmit.bind(_this);
     // this.state.todo =
@@ -22366,10 +22372,10 @@ var TodoForm = function (_React$Component) {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
       e.preventDefault();
-      console.log('this state todo:', this.state.todo);
 
       this.props.receiveTodo(this.state.todo);
-      // this.setState({ todo: "" });
+      this.setState({ todo: { id: "", title: "", body: "" } });
+      // console.log('this state todo:', this.state.todo.title);
     }
   }, {
     key: 'render',
@@ -22387,7 +22393,8 @@ var TodoForm = function (_React$Component) {
             _react2.default.createElement('input', {
               className: 'form-title',
               type: 'text',
-              onChange: this.updateTodo
+              onChange: this.updateTodo,
+              value: this.state.todo.title
             })
           ),
           _react2.default.createElement(

@@ -4,8 +4,8 @@ import uniqueId from './utils';
 class TodoForm extends React.Component {
   constructor(props) {
     super(props);
-
-    this.state = { todo: {id: 1, title: "", body:""} };
+    // this.state = { todo: {} };
+    this.state = { todo: {id: "", title: "", body:""} };
     this.updateTodo = this.updateTodo.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     // this.state.todo =
@@ -21,10 +21,11 @@ class TodoForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('this state todo:', this.state.todo);
+
 
     this.props.receiveTodo(this.state.todo);
-    // this.setState({ todo: "" });
+    this.setState({ todo: {id: "", title: "", body:""}});
+    // console.log('this state todo:', this.state.todo.title);
   }
 
   render() {
@@ -36,6 +37,7 @@ class TodoForm extends React.Component {
               className="form-title"
               type="text"
               onChange={this.updateTodo}
+              value={this.state.todo.title}
             />
           </label>
           <button onClick={this.handleSubmit}>Add Todo!</button>
